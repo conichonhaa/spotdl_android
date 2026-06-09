@@ -1,31 +1,35 @@
 package com.spotdl.android
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.View
+import android.webkit.CookieManager
+import android.webkit.WebChromeClient
+import android.webkit.WebResourceRequest
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.browser.customtabs.CustomTabColorSchemeParams
-import androidx.browser.customtabs.CustomTabsIntent
-import androidx.core.content.ContextCompat
 import com.spotdl.android.databinding.ActivityWebappBinding
 
 class WebAppActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityWebappBinding
     private lateinit var secureStorage: SecureStorage
-    private var customTabLaunched = false
 
     private val settingsLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
         if (result.resultCode == RESULT_OK) {
-            customTabLaunched = false
+            loadSiteUrl()
         }
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityWebappBinding.inflate(layoutInflater)
@@ -33,68 +37,110 @@ class WebAppActivity : AppCompatActivity() {
 
         secureStorage = SecureStorage(this)
 
+        setupWebView()
+
         binding.fabSettings.setOnClickListener {
             settingsLauncher.launch(Intent(this, SettingsActivity::class.java))
         }
 
-        binding.btnOpen.setOnClickListener {
-            launchCustomTab()
+        binding.fabJellyfin.setOnClickListener {
+            openJellyfin()
         }
 
-        binding.btnJellyfin.setOnClickListener {
-            openJellyfin()
+        if (savedInstanceState != null) {
+            binding.webView.restoreState(savedInstanceState)
+        } else {
+            loadSiteUrl()
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        if (!customTabLaunched) {
-            launchCustomTab()
-        } else {
-            // Returned from Custom Tab – show the home screen
-            binding.layoutHome.visibility = View.VISIBLE
+    @SuppressLint("SetJavaScriptEnabled")
+    private fun setupWebView() {
+        CookieManager.getInstance().apply {
+            setAcceptCookie(true)
+            setAcceptThirdPartyCookies(binding.webView, true)
         }
+
+        binding.webView.settings.apply {
+            javaScriptEnabled = true
+            domStorageEnabled = true
+            databaseEnabled = true
+            setSupportMultipleWindows(true)
+            allowContentAccess = true
+            useWideViewPort = true
+            loadWithOverviewMode = true
+            javaScriptCanOpenWindowsAutomatically = true
+            mediaPlaybackRequiresUserGesture = false
+            // Remove "wv" from user agent so the site doesn't treat it as a stripped WebView
+            userAgentString = userAgentString.replace("; wv", "")
+        }
+
+        binding.webView.webViewClient = object : WebViewClient() {
+            override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest) = false
+
+            override fun onPageFinished(view: WebView, url: String?) {
+                super.onPageFinished(view, url)
+                binding.progressBar.visibility = View.GONE
+                CookieManager.getInstance().flush()
+            }
+        }
+
+        binding.webView.webChromeClient = object : WebChromeClient() {
+            override fun onProgressChanged(view: WebView, newProgress: Int) {
+                binding.progressBar.visibility = if (newProgress < 100) View.VISIBLE else View.GONE
+                binding.progressBar.progress = newProgress
+            }
+        }
+    }
+
+    private fun loadSiteUrl() {
+        binding.webView.loadUrl(secureStorage.getSiteUrl())
     }
 
     private fun openJellyfin() {
-        val jellyfinUrl = secureStorage.getJellyfinUrl().ifBlank { "https://jelly.hrs-pacs.fr" }
+        val jellyfinUrl = secureStorage.getJellyfinUrl()
         val appPackage = "org.jellyfin.mobile"
-
         val appInstalled = try {
             packageManager.getPackageInfo(appPackage, PackageManager.GET_ACTIVITIES)
             true
         } catch (e: PackageManager.NameNotFoundException) {
             false
         }
-
         if (appInstalled) {
-            val intent = packageManager.getLaunchIntentForPackage(appPackage)
-            if (intent != null) {
-                startActivity(intent)
+            packageManager.getLaunchIntentForPackage(appPackage)?.let {
+                startActivity(it)
                 return
             }
         }
-
-        // Fallback: open URL in browser
         startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(jellyfinUrl)))
     }
 
-    private fun launchCustomTab() {
-        val siteUrl = secureStorage.getSiteUrl().ifBlank { return }
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_BACK && binding.webView.canGoBack()) {
+            binding.webView.goBack()
+            return true
+        }
+        return super.onKeyDown(keyCode, event)
+    }
 
-        val colorSchemeParams = CustomTabColorSchemeParams.Builder()
-            .setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary))
-            .build()
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        binding.webView.saveState(outState)
+    }
 
-        val customTabsIntent = CustomTabsIntent.Builder()
-            .setShowTitle(true)
-            .setUrlBarHidingEnabled(true)
-            .setColorScheme(CustomTabsIntent.COLOR_SCHEME_SYSTEM)
-            .setDefaultColorSchemeParams(colorSchemeParams)
-            .build()
+    override fun onResume() {
+        super.onResume()
+        binding.webView.onResume()
+    }
 
-        customTabLaunched = true
-        binding.layoutHome.visibility = View.GONE
-        customTabsIntent.launchUrl(this, Uri.parse(siteUrl))
+    override fun onPause() {
+        super.onPause()
+        binding.webView.onPause()
+        CookieManager.getInstance().flush()
+    }
+
+    override fun onDestroy() {
+        binding.webView.destroy()
+        super.onDestroy()
     }
 }
