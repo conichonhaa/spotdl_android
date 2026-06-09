@@ -1,6 +1,7 @@
 package com.spotdl.android
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
@@ -39,6 +40,10 @@ class WebAppActivity : AppCompatActivity() {
         binding.btnOpen.setOnClickListener {
             launchCustomTab()
         }
+
+        binding.btnJellyfin.setOnClickListener {
+            openJellyfin()
+        }
     }
 
     override fun onResume() {
@@ -49,6 +54,29 @@ class WebAppActivity : AppCompatActivity() {
             // Returned from Custom Tab – show the home screen
             binding.layoutHome.visibility = View.VISIBLE
         }
+    }
+
+    private fun openJellyfin() {
+        val jellyfinUrl = secureStorage.getJellyfinUrl().ifBlank { "https://jellyfin.org" }
+        val appPackage = "org.jellyfin.mobile"
+
+        val appInstalled = try {
+            packageManager.getPackageInfo(appPackage, PackageManager.GET_ACTIVITIES)
+            true
+        } catch (e: PackageManager.NameNotFoundException) {
+            false
+        }
+
+        if (appInstalled) {
+            val intent = packageManager.getLaunchIntentForPackage(appPackage)
+            if (intent != null) {
+                startActivity(intent)
+                return
+            }
+        }
+
+        // Fallback: open URL in browser
+        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(jellyfinUrl)))
     }
 
     private fun launchCustomTab() {

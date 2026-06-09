@@ -39,6 +39,16 @@
             android:layout_height="wrap_content"
             android:text="@string/btn_open_app"
             android:paddingStart="32dp"
+            android:paddingEnd="32dp"
+            android:layout_marginBottom="12dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnJellyfin"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_jellyfin"
+            android:paddingStart="32dp"
             android:paddingEnd="32dp" />
 
     </LinearLayout>

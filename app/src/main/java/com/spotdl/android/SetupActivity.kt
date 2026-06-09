@@ -45,6 +45,7 @@ class SetupActivity : AppCompatActivity() {
             binding.editAuthUrl.setText(secureStorage.getAuthUrl())
             binding.editUsername.setText(secureStorage.getUsername())
             binding.editPassword.setText(secureStorage.getPassword())
+            binding.editJellyfinUrl.setText(secureStorage.getJellyfinUrl())
         } else {
             binding.editSiteUrl.setText("https://spotdl.hrs-pacs.fr")
             binding.editAuthUrl.setText("https://auth.hrs-pacs.fr")
@@ -74,6 +75,7 @@ class SetupActivity : AppCompatActivity() {
         val authUrl = binding.editAuthUrl.text?.toString()?.trim() ?: ""
         val username = binding.editUsername.text?.toString()?.trim() ?: ""
         val password = binding.editPassword.text?.toString() ?: ""
+        val jellyfinUrl = binding.editJellyfinUrl.text?.toString()?.trim() ?: ""
 
         if (siteUrl.isEmpty()) {
             binding.tilSiteUrl.error = getString(R.string.error_field_required)
@@ -117,7 +119,14 @@ class SetupActivity : AppCompatActivity() {
             binding.tilPassword.error = null
         }
 
-        secureStorage.save(siteUrl, authUrl, username, password)
+        if (jellyfinUrl.isNotEmpty() && !jellyfinUrl.startsWith("https://") && !jellyfinUrl.startsWith("http://")) {
+            binding.tilJellyfinUrl.error = getString(R.string.error_https_required)
+            return
+        } else {
+            binding.tilJellyfinUrl.error = null
+        }
+
+        secureStorage.save(siteUrl, authUrl, username, password, jellyfinUrl)
         Toast.makeText(this, getString(R.string.setup_saved), Toast.LENGTH_SHORT).show()
 
         if (isEditMode) {

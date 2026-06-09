@@ -13,6 +13,7 @@ class SecureStorage(context: Context) {
         private const val KEY_AUTH_URL = "auth_url"
         private const val KEY_USERNAME = "username"
         private const val KEY_PASSWORD = "password"
+        private const val KEY_JELLYFIN_URL = "jellyfin_url"
         private const val KEY_IS_CONFIGURED = "is_configured"
     }
 
@@ -28,12 +29,13 @@ class SecureStorage(context: Context) {
         EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
     )
 
-    fun save(siteUrl: String, authUrl: String, username: String, password: String) {
+    fun save(siteUrl: String, authUrl: String, username: String, password: String, jellyfinUrl: String = "") {
         prefs.edit()
             .putString(KEY_SITE_URL, siteUrl)
             .putString(KEY_AUTH_URL, authUrl)
             .putString(KEY_USERNAME, username)
             .putString(KEY_PASSWORD, password)
+            .putString(KEY_JELLYFIN_URL, jellyfinUrl)
             .putBoolean(KEY_IS_CONFIGURED, true)
             .apply()
     }
@@ -45,6 +47,8 @@ class SecureStorage(context: Context) {
     fun getUsername(): String = prefs.getString(KEY_USERNAME, "") ?: ""
 
     fun getPassword(): String = prefs.getString(KEY_PASSWORD, "") ?: ""
+
+    fun getJellyfinUrl(): String = prefs.getString(KEY_JELLYFIN_URL, "") ?: ""
 
     fun isConfigured(): Boolean = prefs.getBoolean(KEY_IS_CONFIGURED, false)
 
