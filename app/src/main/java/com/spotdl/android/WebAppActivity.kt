@@ -57,7 +57,7 @@ class WebAppActivity : AppCompatActivity() {
     }
 
     private fun openJellyfin() {
-        val jellyfinUrl = secureStorage.getJellyfinUrl().ifBlank { "https://jellyfin.org" }
+        val jellyfinUrl = secureStorage.getJellyfinUrl().ifBlank { "https://jelly.hrs-pacs.fr" }
         val appPackage = "org.jellyfin.mobile"
 
         val appInstalled = try {

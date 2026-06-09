@@ -49,6 +49,7 @@ class SetupActivity : AppCompatActivity() {
         } else {
             binding.editSiteUrl.setText("https://spotdl.hrs-pacs.fr")
             binding.editAuthUrl.setText("https://auth.hrs-pacs.fr")
+            binding.editJellyfinUrl.setText("https://jelly.hrs-pacs.fr")
         }
     }
 

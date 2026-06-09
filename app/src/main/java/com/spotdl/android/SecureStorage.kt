@@ -48,7 +48,7 @@ class SecureStorage(context: Context) {
 
     fun getPassword(): String = prefs.getString(KEY_PASSWORD, "") ?: ""
 
-    fun getJellyfinUrl(): String = prefs.getString(KEY_JELLYFIN_URL, "") ?: ""
+    fun getJellyfinUrl(): String = prefs.getString(KEY_JELLYFIN_URL, "https://jelly.hrs-pacs.fr") ?: "https://jelly.hrs-pacs.fr"
 
     fun isConfigured(): Boolean = prefs.getBoolean(KEY_IS_CONFIGURED, false)
 
