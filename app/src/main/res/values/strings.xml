@@ -36,4 +36,6 @@
     <!-- WebApp -->
     <string name="loading">Chargement…</string>
     <string name="content_description_settings">Paramètres</string>
+    <string name="label_session_closed">La session est fermée ou expirée</string>
+    <string name="btn_open_app">Ouvrir SpotDL</string>
 </resources>
