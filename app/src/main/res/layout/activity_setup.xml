@@ -4,17 +4,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?android:attr/colorBackground">
+    android:background="#101010">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:backgroundTint="#101010">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize" />
+            android:layout_height="?attr/actionBarSize"
+            android:background="#101010"
+            app:titleTextColor="@android:color/white"
+            app:navigationIconTint="@android:color/white" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -37,7 +41,7 @@
                 android:text="@string/app_name"
                 android:textSize="40sp"
                 android:textStyle="bold"
-                android:textColor="?attr/colorPrimary"
+                android:textColor="#AA5CC3"
                 android:gravity="center"
                 android:layout_marginBottom="8dp" />
 
@@ -47,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/setup_subtitle"
                 android:textSize="16sp"
-                android:textColor="?attr/colorOnSurfaceVariant"
+                android:textColor="#AAAAAA"
                 android:gravity="center"
                 android:layout_marginBottom="32dp" />
 
@@ -57,7 +61,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_site_url"
-                android:layout_marginBottom="16dp">
+                android:layout_marginBottom="16dp"
+                app:hintTextColor="#AA5CC3"
+                app:boxStrokeColor="#AA5CC3"
+                app:boxStrokeWidthFocused="2dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editSiteUrl"
@@ -65,7 +72,9 @@
                     android:layout_height="wrap_content"
                     android:inputType="textUri"
                     android:imeOptions="actionNext"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:textColor="@android:color/white"
+                    android:textColorHint="#666666" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -75,7 +84,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_auth_url"
-                android:layout_marginBottom="16dp">
+                android:layout_marginBottom="16dp"
+                app:hintTextColor="#AA5CC3"
+                app:boxStrokeColor="#AA5CC3"
+                app:boxStrokeWidthFocused="2dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editAuthUrl"
@@ -83,7 +95,9 @@
                     android:layout_height="wrap_content"
                     android:inputType="textUri"
                     android:imeOptions="actionNext"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:textColor="@android:color/white"
+                    android:textColorHint="#666666" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -93,7 +107,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_username"
-                android:layout_marginBottom="16dp">
+                android:layout_marginBottom="16dp"
+                app:hintTextColor="#AA5CC3"
+                app:boxStrokeColor="#AA5CC3"
+                app:boxStrokeWidthFocused="2dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editUsername"
@@ -102,6 +119,8 @@
                     android:inputType="textEmailAddress"
                     android:imeOptions="actionNext"
                     android:singleLine="true"
+                    android:textColor="@android:color/white"
+                    android:textColorHint="#666666"
                     android:autofillHints="username" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -112,7 +131,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_jellyfin_url"
-                android:layout_marginBottom="16dp">
+                android:layout_marginBottom="16dp"
+                app:hintTextColor="#AA5CC3"
+                app:boxStrokeColor="#AA5CC3"
+                app:boxStrokeWidthFocused="2dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editJellyfinUrl"
@@ -120,7 +142,9 @@
                     android:layout_height="wrap_content"
                     android:inputType="textUri"
                     android:imeOptions="actionNext"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:textColor="@android:color/white"
+                    android:textColorHint="#666666" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -130,7 +154,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_password"
-                android:layout_marginBottom="32dp">
+                android:layout_marginBottom="32dp"
+                app:hintTextColor="#AA5CC3"
+                app:boxStrokeColor="#AA5CC3"
+                app:boxStrokeWidthFocused="2dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editPassword"
@@ -139,6 +166,8 @@
                     android:inputType="textPassword"
                     android:imeOptions="actionDone"
                     android:singleLine="true"
+                    android:textColor="@android:color/white"
+                    android:textColorHint="#666666"
                     android:autofillHints="password" />
 
                 <ImageButton
@@ -160,7 +189,8 @@
                 android:text="@string/btn_save"
                 android:textSize="16sp"
                 android:paddingTop="14dp"
-                android:paddingBottom="14dp" />
+                android:paddingBottom="14dp"
+                app:backgroundTint="#AA5CC3" />
 
         </LinearLayout>
 
