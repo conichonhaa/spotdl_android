@@ -8,12 +8,15 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:backgroundTint="#101010">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize" />
+            android:layout_height="?attr/actionBarSize"
+            android:background="#101010"
+            app:titleTextColor="@android:color/white" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -28,9 +31,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
+            app:cardBackgroundColor="#1E1E1E"
             app:cardElevation="0dp"
             app:strokeWidth="1dp"
-            app:strokeColor="?attr/colorOutline">
+            app:strokeColor="#AA5CC3">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -44,7 +48,7 @@
                     android:text="@string/btn_modifier"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:textColor="?attr/colorOnSurface"
+                    android:textColor="@android:color/white"
                     android:layout_marginBottom="4dp" />
 
                 <TextView
@@ -52,14 +56,15 @@
                     android:layout_height="wrap_content"
                     android:text="Mettre à jour les URLs et identifiants"
                     android:textSize="14sp"
-                    android:textColor="?attr/colorOnSurfaceVariant"
+                    android:textColor="#AAAAAA"
                     android:layout_marginBottom="12dp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnModifier"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/btn_modifier" />
+                    android:text="@string/btn_modifier"
+                    app:backgroundTint="#AA5CC3" />
 
             </LinearLayout>
 
@@ -68,9 +73,10 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:cardBackgroundColor="#1E1E1E"
             app:cardElevation="0dp"
             app:strokeWidth="1dp"
-            app:strokeColor="?attr/colorError">
+            app:strokeColor="#CF6679">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -84,7 +90,7 @@
                     android:text="@string/btn_reinitialiser"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:textColor="?attr/colorOnSurface"
+                    android:textColor="@android:color/white"
                     android:layout_marginBottom="4dp" />
 
                 <TextView
@@ -92,16 +98,15 @@
                     android:layout_height="wrap_content"
                     android:text="Effacer toutes les données stockées"
                     android:textSize="14sp"
-                    android:textColor="?attr/colorOnSurfaceVariant"
+                    android:textColor="#AAAAAA"
                     android:layout_marginBottom="12dp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnReinitialiser"
-                    style="@style/Widget.Material3.Button.TonalButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/btn_reinitialiser"
-                    app:backgroundTint="?attr/colorErrorContainer" />
+                    app:backgroundTint="#CF6679" />
 
             </LinearLayout>
 
