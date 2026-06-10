@@ -99,26 +99,14 @@ class WebAppActivity : AppCompatActivity() {
 
     private fun openJellyfin() {
         val jellyfinUrl = secureStorage.getJellyfinUrl()
-        val appPackage = "org.jellyfin.mobile"
 
-        // 1. Deep link: opens Jellyfin app directly on the configured server
-        val serverHost = Uri.parse(jellyfinUrl).host ?: ""
-        if (serverHost.isNotEmpty()) {
-            val deepLinkIntent = Intent(Intent.ACTION_VIEW, Uri.parse("jellyfin://$serverHost"))
-            deepLinkIntent.setPackage(appPackage)
-            if (deepLinkIntent.resolveActivity(packageManager) != null) {
-                startActivity(deepLinkIntent)
-                return
-            }
-        }
-
-        // 2. Fallback: launch app on its home screen
-        packageManager.getLaunchIntentForPackage(appPackage)?.let {
+        // 1. Open Jellyfin Android app if installed
+        packageManager.getLaunchIntentForPackage("org.jellyfin.mobile")?.let {
             startActivity(it)
             return
         }
 
-        // 3. Fallback: open URL in browser
+        // 2. Fallback: open server URL in browser
         startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(jellyfinUrl)))
     }
 
