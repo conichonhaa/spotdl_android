@@ -40,7 +40,8 @@
         android:layout_margin="16dp"
         android:contentDescription="@string/content_description_settings"
         android:src="@drawable/ic_settings"
+        app:backgroundTint="#AA5CC3"
         app:fabSize="mini"
-        app:tint="?attr/colorOnPrimary" />
+        app:tint="@android:color/white" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
