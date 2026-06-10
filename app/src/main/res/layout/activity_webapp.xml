@@ -28,7 +28,7 @@
         android:layout_margin="16dp"
         android:contentDescription="Jellyfin"
         android:src="@drawable/ic_jellyfin"
-        app:backgroundTint="#1C1C1C"
+        app:backgroundTint="#000b38"
         app:fabSize="mini"
         app:tint="@null" />
 
