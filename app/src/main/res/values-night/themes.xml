@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="Theme.SpotDL.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#101010</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_jellyfin</item>
+        <item name="postSplashScreenTheme">@style/Theme.SpotDL</item>
+    </style>
+
     <style name="Theme.SpotDL" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/md_theme_dark_primary</item>
         <item name="colorOnPrimary">@color/md_theme_dark_onPrimary</item>
