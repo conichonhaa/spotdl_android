@@ -28,8 +28,9 @@
         android:layout_margin="16dp"
         android:contentDescription="Jellyfin"
         android:src="@drawable/ic_jellyfin"
+        app:backgroundTint="#1C1C1C"
         app:fabSize="mini"
-        app:tint="@android:color/white" />
+        app:tint="@null" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabSettings"
