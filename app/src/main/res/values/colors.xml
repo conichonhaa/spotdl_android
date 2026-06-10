@@ -1,34 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Jellyfin brand colors -->
-    <color name="seed">#00A4DC</color>
-    <color name="colorPrimary">#00A4DC</color>
-    <color name="jellyfin_blue">#00A4DC</color>
     <color name="jellyfin_purple">#AA5CC3</color>
+    <color name="jellyfin_blue">#00A4DC</color>
+    <color name="colorPrimary">#AA5CC3</color>
 
     <!-- Light theme -->
-    <color name="md_theme_light_primary">#00A4DC</color>
+    <color name="md_theme_light_primary">#AA5CC3</color>
     <color name="md_theme_light_onPrimary">#FFFFFF</color>
-    <color name="md_theme_light_primaryContainer">#B3E7F7</color>
-    <color name="md_theme_light_onPrimaryContainer">#001F2B</color>
-    <color name="md_theme_light_background">#F5FAFE</color>
-    <color name="md_theme_light_onBackground">#101820</color>
-    <color name="md_theme_light_surface">#F5FAFE</color>
-    <color name="md_theme_light_onSurface">#101820</color>
-    <color name="md_theme_light_surfaceVariant">#D0E8F4</color>
-    <color name="md_theme_light_onSurfaceVariant">#3A4F5C</color>
-    <color name="md_theme_light_outline">#6A8898</color>
+    <color name="md_theme_light_primaryContainer">#EECFF7</color>
+    <color name="md_theme_light_onPrimaryContainer">#2A0040</color>
+    <color name="md_theme_light_background">#FBF5FE</color>
+    <color name="md_theme_light_onBackground">#1A101E</color>
+    <color name="md_theme_light_surface">#FBF5FE</color>
+    <color name="md_theme_light_onSurface">#1A101E</color>
+    <color name="md_theme_light_surfaceVariant">#EBDAF2</color>
+    <color name="md_theme_light_onSurfaceVariant">#4A3754</color>
+    <color name="md_theme_light_outline">#7A5F84</color>
 
-    <!-- Dark theme (matches Jellyfin app dark UI) -->
-    <color name="md_theme_dark_primary">#00A4DC</color>
-    <color name="md_theme_dark_onPrimary">#003549</color>
-    <color name="md_theme_dark_primaryContainer">#004D6B</color>
-    <color name="md_theme_dark_onPrimaryContainer">#B3E7F7</color>
+    <!-- Dark theme (matches Jellyfin dark UI) -->
+    <color name="md_theme_dark_primary">#D08AE8</color>
+    <color name="md_theme_dark_onPrimary">#3D005A</color>
+    <color name="md_theme_dark_primaryContainer">#5A1E7A</color>
+    <color name="md_theme_dark_onPrimaryContainer">#EECFF7</color>
     <color name="md_theme_dark_background">#101010</color>
-    <color name="md_theme_dark_onBackground">#E2E8EC</color>
+    <color name="md_theme_dark_onBackground">#E8DEF0</color>
     <color name="md_theme_dark_surface">#1C1C1C</color>
-    <color name="md_theme_dark_onSurface">#E2E8EC</color>
-    <color name="md_theme_dark_surfaceVariant">#2A3540</color>
-    <color name="md_theme_dark_onSurfaceVariant">#A0B8C8</color>
-    <color name="md_theme_dark_outline">#4A6878</color>
+    <color name="md_theme_dark_onSurface">#E8DEF0</color>
+    <color name="md_theme_dark_surfaceVariant">#2D2035</color>
+    <color name="md_theme_dark_onSurfaceVariant">#CBAFDA</color>
+    <color name="md_theme_dark_outline">#9575A8</color>
 </resources>

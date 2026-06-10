@@ -5,12 +5,16 @@
     android:height="24dp"
     android:viewportWidth="24"
     android:viewportHeight="24">
+    <!--
+        Jellyfin logo: double-chevron shape
+        M start-top-left → upper-right-tip → notch-center-left → lower-right-tip → bottom-left → close
+    -->
     <path
-        android:pathData="M5,3.27L5,20.73C5,21.68 6.07,22.24 6.86,21.7L20.15,13.03C20.87,12.54 20.87,11.5 20.15,11.01L6.86,2.34C6.07,1.8 5,2.36 5,3.27Z">
+        android:pathData="M4,2 L20,9.5 L8,12 L20,14.5 L4,22 Z">
         <aapt:attr name="android:fillColor">
             <gradient
                 android:type="linear"
-                android:startX="5"
+                android:startX="4"
                 android:startY="2"
                 android:endX="20"
                 android:endY="22">
