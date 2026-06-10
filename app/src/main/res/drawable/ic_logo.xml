@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="300dp"
+    android:height="300dp"
+    android:viewportWidth="512"
+    android:viewportHeight="512">
+
+    <!-- Outer triangle -->
+    <path
+        android:pathData="M256,70 C280,70 380,230 400,320 C410,370 390,390 350,395 C290,402 220,402 160,395 C120,390 100,370 110,320 C130,230 232,70 256,70 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:type="linear"
+                android:startX="0"
+                android:startY="0"
+                android:endX="512"
+                android:endY="512">
+                <item android:offset="0" android:color="#c16ae6"/>
+                <item android:offset="1" android:color="#00b7ff"/>
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Middle gap — same color as splash/waiting background -->
+    <path
+        android:fillColor="#000b38"
+        android:pathData="M256,125 C272,125 340,240 355,300 C360,325 348,338 320,340 C278,343 234,343 192,340 C164,338 152,325 157,300 C172,240 240,125 256,125 Z" />
+
+    <!-- Inner triangle -->
+    <path
+        android:pathData="M256,180 C268,180 305,245 315,280 C320,298 312,306 292,308 C268,310 244,310 220,308 C200,306 192,298 197,280 C207,245 244,180 256,180 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:type="linear"
+                android:startX="0"
+                android:startY="0"
+                android:endX="512"
+                android:endY="512">
+                <item android:offset="0" android:color="#b38ae8"/>
+                <item android:offset="1" android:color="#7ab8ff"/>
+            </gradient>
+        </aapt:attr>
+    </path>
+
+</vector>
